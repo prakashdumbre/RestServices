@@ -3,16 +3,18 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jaxrs="http://cxf.apache.org/jaxrs"
        xmlns:cxf="http://cxf.apache.org/core"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
                         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
-                        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
-
-   <context:component-scan base-package="com.service" />
+                        http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+   	<context:component-scan base-package="com.service" />
 	<context:annotation-config/>
-	<bean id="companyDao" class="com.service.dao.CompanyDaoImpl" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
     <jaxrs:server id="cxfServer" address="/">
         <jaxrs:serviceBeans>
             <ref bean="companyResourceService"/>

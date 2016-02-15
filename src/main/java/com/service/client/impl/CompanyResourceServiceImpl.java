@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.client.request.dto.CompanyDto;
 import com.client.rsponse.dto.ResponseDto;
@@ -15,6 +16,7 @@ import com.service.domain.Company;
 import com.service.domain.mapper.DomainMapper;
 
 @Service("companyResourceService")
+@Transactional
 public class CompanyResourceServiceImpl implements CompanyResourceService {
 
 	@Autowired
@@ -23,11 +25,12 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 	@Autowired
 	private DomainMapper<Company, CompanyDto> domainMapper;
 
+
 	@Override
 	public ResponseDto add(CompanyDto companyDto) {
 		Company newCompany = (Company) domainMapper.mapToDomain(companyDto, new Company());
 		companyDao.save(newCompany);
-		System.out.println("CompanyId = " + newCompany.getCompanyId());
+		System.out.println("CompanyId = " + newCompany.toString());
 		ResponseDto response = new ResponseDto();
 		response.setCompanyId(newCompany.getCompanyId());
 		return response;
