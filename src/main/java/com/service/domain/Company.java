@@ -21,7 +21,7 @@ public class Company {
 	private String email;
 	private String phoneNumber;
 
-	@OneToMany(targetEntity=Owner.class, mappedBy="company")
+	@OneToMany(mappedBy="company")
 	private List<Owner> owners;
 
 	public Long getCompanyId() {

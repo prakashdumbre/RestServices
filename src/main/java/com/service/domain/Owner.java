@@ -13,8 +13,9 @@ public class Owner {
 	private String name;
 
 	@ManyToOne
-	@JoinColumn(name = "companyId", nullable = false)
+	@JoinColumn(name = "companyId")
 	private Company company;
+
 	public Long getId() {
 		return id;
 	}
