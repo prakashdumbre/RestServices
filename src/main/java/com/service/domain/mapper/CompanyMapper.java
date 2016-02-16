@@ -38,26 +38,22 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		return destination;
 	}
 
-	private List<Owner> getOwners(Company destination, List<OwnerDto> owners) {
+	private List<Owner> getOwners(Company destination, List<String> owners) {
 		List<Owner> ownerList = new ArrayList<Owner>();
-		for(OwnerDto ownerDto : owners) {
+		for(String owner : owners) {
 			Owner o = new Owner();
 			o.setCompany(destination);
-			o.setId(ownerDto.getId());
-			o.setName(ownerDto.getName());
+			o.setName(owner);
 			ownerList.add(o);
 		}
 		return ownerList;
 	}
 
-	private List<OwnerDto> getOwnerDtos(List<Owner> owners) {
-		List<OwnerDto> ownersDto = new ArrayList<OwnerDto>();
+	private List<String> getOwnerDtos(List<Owner> owners) {
+		List<String> ownersList = new ArrayList<String>();
 		for(Owner owner : owners) {
-			OwnerDto ownerDto = new OwnerDto();
-			ownerDto.setId(owner.getId());
-			ownerDto.setName(owner.getName());
-			ownersDto.add(ownerDto);
+			ownersList.add(owner.getName());
 		}
-		return ownersDto;
+		return ownersList;
 	}
 }

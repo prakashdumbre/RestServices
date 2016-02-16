@@ -1,4 +1,4 @@
-package com.client.rsponse.dto;
+package com.client.response.dto;
 
 public class ResponseDto {
 

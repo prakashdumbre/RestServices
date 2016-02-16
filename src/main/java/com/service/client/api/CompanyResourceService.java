@@ -11,7 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.client.request.dto.CompanyDto;
-import com.client.rsponse.dto.ResponseDto;
+import com.client.response.dto.ResponseDto;
 
 @Path("/companies")
 public interface CompanyResourceService {

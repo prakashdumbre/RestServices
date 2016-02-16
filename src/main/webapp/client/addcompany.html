@@ -9,21 +9,13 @@
 <script>
 function addData() {
     var jsonObject = new Object();
-	var jsonOwners = [];
-	var owners = $( "#owners" ).val();
-	for(var index = 0; index < owners.length; index++) {
-		var ownerObject = new Object();
-		ownerObject.id = owners[index];
-		ownerObject.name = $("#" + owners[index]).text();
-		jsonOwners[index] = ownerObject;
-	}
 	jsonObject.name = $( "#name" ).val();
 	jsonObject.address = $( "#address" ).val();
 	jsonObject.city = $( "#city" ).val();
 	jsonObject.country = $( "#country" ).val();
 	jsonObject.email = $( "#email" ).val();
 	jsonObject.phoneNumber = $( "#phone" ).val();
-	jsonObject.owners = jsonOwners;
+	jsonObject.owners = $( "#owners" ).val();
 		$.ajax({
 		  type: "POST",
 		  url: "http://localhost:8080/SpringCxfWebApp/services/companies",
@@ -48,10 +40,10 @@ function addData() {
 		  Phone:&nbsp; <input type="text" name="phone" id="phone"> <br><br>
 		  Owners:&nbsp;
 		  <select multiple="true" id="owners">
-			  <option id="1" value="1">Volvo</option>
-			  <option id="2" value="2">Saab</option>
-			  <option id="3" value="3">Opel</option>
-			  <option id="4" value="4">Audi</option>
+			  <option value="Volvo">Volvo</option>
+			  <option value="Saab">Saab</option>
+			  <option value="Saab">Opel</option>
+			  <option value="Saab">Audi</option>
 			</select>
 		 <button onclick="addData()">submit</button>
 		 </table>

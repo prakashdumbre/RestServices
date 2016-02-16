@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.client.request.dto.CompanyDto;
-import com.client.rsponse.dto.ResponseDto;
+import com.client.response.dto.ResponseDto;
 import com.service.client.api.CompanyResourceService;
 import com.service.dao.CompanyDaoImpl;
 import com.service.domain.Company;
@@ -42,7 +42,6 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 		return (CompanyDto) domainMapper.mapToDto(existing, new CompanyDto());
 	}
 
-	@Transactional
 	@Override
 	public List<CompanyDto> findAll() {
 		List<CompanyDto> allData = new ArrayList<CompanyDto>();
