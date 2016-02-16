@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import com.service.domain.Company;
+import com.service.domain.Owner;
 
 /**
  * DAO implementation for Company entity
@@ -22,12 +23,13 @@ public class CompanyDaoImpl implements CompanyDao {
 	@Override
     public Long save(Company company) {
 		em.persist(company);
+		em.flush();
         return company.getCompanyId();
     }
 
 	@Override
     public List<Company> getAll() {
-        return em.createQuery("SELECT p FROM Company p", Company.class).getResultList();
+        return em.createQuery("SELECT company FROM Company company", Company.class).getResultList();
     }
 
 	@Override
@@ -40,4 +42,9 @@ public class CompanyDaoImpl implements CompanyDao {
 		em.merge(company);
 		return company.getCompanyId();
 	}
+
+
+    public List<Owner> getOwners() {
+        return em.createQuery("SELECT owner FROM Owner owner", Owner.class).getResultList();
+    }
 }

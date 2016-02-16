@@ -1,0 +1,60 @@
+<html>
+<head>
+		<title>Add Compay details</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+</head>
+<body>
+
+
+<script>
+function addData() {
+    var jsonObject = new Object();
+	var jsonOwners = [];
+	var owners = $( "#owners" ).val();
+	for(var index = 0; index < owners.length; index++) {
+		var ownerObject = new Object();
+		ownerObject.id = owners[index];
+		ownerObject.name = $("#" + owners[index]).text();
+		jsonOwners[index] = ownerObject;
+	}
+	jsonObject.name = $( "#name" ).val();
+	jsonObject.address = $( "#address" ).val();
+	jsonObject.city = $( "#city" ).val();
+	jsonObject.country = $( "#country" ).val();
+	jsonObject.email = $( "#email" ).val();
+	jsonObject.phoneNumber = $( "#phone" ).val();
+	jsonObject.owners = jsonOwners;
+		$.ajax({
+		  type: "POST",
+		  url: "http://localhost:8080/SpringCxfWebApp/services/companies",
+		  contentType: "application/json",
+		  data: JSON.stringify(jsonObject),
+		  success: function(data){
+			  var message = "Company data created successfully with compnay id " + data.companyId;
+			  $("#companyData").html(message);
+		  },
+		 failure: function (response) {
+            }
+		});
+}
+</script>
+		 <table>
+		  <span style="color:darkolivegreen;font-weight:bold" id="companyData"></span>
+		  Company name: &nbsp; <input type="text" name="name" id="name"><br> <br>
+		  Address: &nbsp; <input type="text" name="address" id="address"> <br><br>
+		  City:&nbsp; <input type="text" name="city" id="city"><br><br>
+		  County:&nbsp; <input type="text" name="country" id="country"> <br><br>
+		  Email:&nbsp; <input type="text" name="email" id="email"><br><br>
+		  Phone:&nbsp; <input type="text" name="phone" id="phone"> <br><br>
+		  Owners:&nbsp;
+		  <select multiple="true" id="owners">
+			  <option id="1" value="1">Volvo</option>
+			  <option id="2" value="2">Saab</option>
+			  <option id="3" value="3">Opel</option>
+			  <option id="4" value="4">Audi</option>
+			</select>
+		 <button onclick="addData()">submit</button>
+		 </table>
+
+</body>
+</html>

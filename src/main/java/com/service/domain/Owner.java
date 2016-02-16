@@ -1,6 +1,8 @@
 package com.service.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,10 +12,12 @@ public class Owner {
 
 	@Id
 	private Long id;
+
+	@Column(name = "NAME")
 	private String name;
 
-	@ManyToOne
-	@JoinColumn(name = "companyId")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "COMPANY_ID" , nullable = false)
 	private Company company;
 
 	public Long getId() {

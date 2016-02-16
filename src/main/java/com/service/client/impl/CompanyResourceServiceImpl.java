@@ -30,7 +30,6 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 	public ResponseDto add(CompanyDto companyDto) {
 		Company newCompany = (Company) domainMapper.mapToDomain(companyDto, new Company());
 		companyDao.save(newCompany);
-		System.out.println("CompanyId = " + newCompany.toString());
 		ResponseDto response = new ResponseDto();
 		response.setCompanyId(newCompany.getCompanyId());
 		return response;
@@ -43,6 +42,7 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 		return (CompanyDto) domainMapper.mapToDto(existing, new CompanyDto());
 	}
 
+	@Transactional
 	@Override
 	public List<CompanyDto> findAll() {
 		List<CompanyDto> allData = new ArrayList<CompanyDto>();

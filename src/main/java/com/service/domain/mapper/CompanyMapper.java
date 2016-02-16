@@ -1,12 +1,12 @@
 package com.service.domain.mapper;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 import com.client.request.dto.CompanyDto;
+import com.client.request.dto.OwnerDto;
 import com.service.domain.Company;
 import com.service.domain.Owner;
 
@@ -24,7 +24,7 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		destination.setAddress(source.getAddress());
 		destination.setCountry(source.getCountry());
 		destination.setPhoneNumber(source.getPhoneNumber());
-		destination.setOwners(getOwnerIds(source.getOwners()));
+		destination.setOwners(getOwnerDtos(source.getOwners()));
 		return destination;
 	}
 
@@ -34,26 +34,30 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		destination.setAddress(source.getAddress());
 		destination.setCountry(source.getCountry());
 		destination.setPhoneNumber(source.getPhoneNumber());
-		destination.setOwners(getOwners(source.getOwners()));
+		destination.setOwners(getOwners(destination, source.getOwners()));
 		return destination;
 	}
 
-	private List<Owner> getOwners(List<Long> ownerIds) {
+	private List<Owner> getOwners(Company destination, List<OwnerDto> owners) {
 		List<Owner> ownerList = new ArrayList<Owner>();
-		for(Long ownerId : ownerIds) {
+		for(OwnerDto ownerDto : owners) {
 			Owner o = new Owner();
-			o.setId(ownerId);
+			o.setCompany(destination);
+			o.setId(ownerDto.getId());
+			o.setName(ownerDto.getName());
 			ownerList.add(o);
 		}
 		return ownerList;
 	}
 
-	private List<Long> getOwnerIds(List<Owner> owners) {
-		List<Long> ownerIds = new ArrayList<Long>();
+	private List<OwnerDto> getOwnerDtos(List<Owner> owners) {
+		List<OwnerDto> ownersDto = new ArrayList<OwnerDto>();
 		for(Owner owner : owners) {
-			ownerIds.add(owner.getId());
+			OwnerDto ownerDto = new OwnerDto();
+			ownerDto.setId(owner.getId());
+			ownerDto.setName(owner.getName());
+			ownersDto.add(ownerDto);
 		}
-		return ownerIds;
+		return ownersDto;
 	}
-
 }

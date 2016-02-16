@@ -2,17 +2,19 @@ package com.service.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
 @Entity
 public class Company {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long companyId;
 	private String name;
 	private String address;
@@ -21,9 +23,11 @@ public class Company {
 	private String email;
 	private String phoneNumber;
 
-	@OneToMany(mappedBy="company")
 	private List<Owner> owners;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "COMPANY_ID")
 	public Long getCompanyId() {
 		return companyId;
 	}
@@ -67,10 +71,22 @@ public class Company {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
+
+	@OneToMany(mappedBy="company", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	public List<Owner> getOwners() {
 		return owners;
 	}
 	public void setOwners(List<Owner> owners) {
 		this.owners = owners;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Company Id = ");
+		builder.append(this.companyId);
+		builder.append("Name = ");
+		builder.append(this.name);
+		return builder.toString();
 	}
 }

@@ -11,7 +11,7 @@ public class CompanyDto {
 	private String country;
 	private String email;
 	private String phoneNumber;
-	private List<Long> owners;
+	private List<OwnerDto> owners;
 
 	public Long getCompanyId() {
 		return companyId;
@@ -55,10 +55,10 @@ public class CompanyDto {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public List<Long> getOwners() {
+	public List<OwnerDto> getOwners() {
 		return owners;
 	}
-	public void setOwners(List<Long> owners) {
+	public void setOwners(List<OwnerDto> owners) {
 		this.owners = owners;
 	}
 }

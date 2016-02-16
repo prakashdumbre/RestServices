@@ -1,4 +1,13 @@
 <!doctype html>
+<script language="javascript" type="text/javascript">
+
+function addData(url) {
+	newwindow=window.open(url,'name','height=200,width=150');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+</script>
 <html>
 	<head>
 		<title>Hello AngularJS</title>
@@ -7,10 +16,11 @@
 	</head>
 
 	<body>
-		<button type="button">Add Company</button> <br><br>
+		<button type="button" onclick="addData('addcompany.html')">Add Company</button> <br><br>
 		<button type="button">Update Company</button> <br><br>
-		<button type="button" onclick="getData(1)">Get Company details</button> &nbsp;
-		<input type="text" id="cId" />&nbsp;
+		<button type="button" onclick="getData()">Get Company details</button> &nbsp;
+		<input type="text" id="cId" />&nbsp; <br><br>
+		<button type="button" onclick="getAllData()">Get All Company details</button> &nbsp;
 
 		<br><br>
 		<div id="displayData">
