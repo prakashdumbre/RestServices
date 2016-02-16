@@ -9,13 +9,16 @@
 <script>
 function addData() {
     var jsonObject = new Object();
+	var jsonOwners = [];
+	var owners = $( "#owners" ).val();
+	console.log(owners);
 	jsonObject.name = $( "#name" ).val();
 	jsonObject.address = $( "#address" ).val();
 	jsonObject.city = $( "#city" ).val();
 	jsonObject.country = $( "#country" ).val();
 	jsonObject.email = $( "#email" ).val();
 	jsonObject.phoneNumber = $( "#phone" ).val();
-	jsonObject.owners = $( "#owners" ).val();
+	jsonObject.owners = owners;
 		$.ajax({
 		  type: "POST",
 		  url: "http://localhost:8080/SpringCxfWebApp/services/companies",
@@ -31,21 +34,21 @@ function addData() {
 }
 </script>
 		 <table>
-		  <span style="color:darkolivegreen;font-weight:bold" id="companyData"></span>
-		  Company name: &nbsp; <input type="text" name="name" id="name"><br> <br>
-		  Address: &nbsp; <input type="text" name="address" id="address"> <br><br>
-		  City:&nbsp; <input type="text" name="city" id="city"><br><br>
-		  County:&nbsp; <input type="text" name="country" id="country"> <br><br>
-		  Email:&nbsp; <input type="text" name="email" id="email"><br><br>
-		  Phone:&nbsp; <input type="text" name="phone" id="phone"> <br><br>
-		  Owners:&nbsp;
+		 <tr><td> Company name: &nbsp;</td><td> <input type="text" name="name" id="name"></td></tr>
+		  <tr><td>Address: &nbsp; </td><td><input type="text" name="address" id="address"></td></tr>
+		  <tr><td>City:&nbsp;</td><td> <input type="text" name="city" id="city"></td></tr>
+		  <tr><td>County:&nbsp;</td><td> <input type="text" name="country" id="country"></td></tr>
+		  <tr><td>Email:&nbsp; </td><td> <input type="text" name="email" id="email"></td></tr>
+		  <tr><td>Phone:&nbsp;</td><td>  <input type="text" name="phone" id="phone"></td></tr>
+		  <tr><td>Owners:&nbsp;</td><td>
 		  <select multiple="true" id="owners">
 			  <option value="Volvo">Volvo</option>
 			  <option value="Saab">Saab</option>
 			  <option value="Saab">Opel</option>
 			  <option value="Saab">Audi</option>
-			</select>
-		 <button onclick="addData()">submit</button>
+			</select></td></tr>
+			<tr><td colspan="2" align="center"><br/>
+		 <button onclick="addData()">submit</button></td></tr>
 		 </table>
 
 </body>
