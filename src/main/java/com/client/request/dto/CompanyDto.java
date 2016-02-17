@@ -1,6 +1,6 @@
 package com.client.request.dto;
 
-import java.util.List;
+import java.util.Set;
 
 public class CompanyDto {
 
@@ -11,7 +11,7 @@ public class CompanyDto {
 	private String country;
 	private String email;
 	private String phoneNumber;
-	private List<String> owners;
+	private Set<String> owners;
 
 	public Long getCompanyId() {
 		return companyId;
@@ -55,10 +55,10 @@ public class CompanyDto {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public List<String> getOwners() {
+	public Set<String> getOwners() {
 		return owners;
 	}
-	public void setOwners(List<String> owners) {
+	public void setOwners(Set<String> owners) {
 		this.owners = owners;
 	}
 }

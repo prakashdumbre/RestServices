@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.ws.rs.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +41,9 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 	public CompanyDto get(Long companyId) {
 		throwExceptionIfCompanyIdNull(companyId);
 		Company existing = companyDao.getCompany(companyId);
+		if(Objects.isNull(existing)) {
+			throw new NotFoundException("Company object not found in system.");
+		}
 		return (CompanyDto) domainMapper.mapToDto(existing, new CompanyDto());
 	}
 
@@ -56,8 +61,7 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 		throwExceptionIfCompanyIdNull(companyId);
 		Company existing = companyDao.getCompany(companyId);
 		if(Objects.isNull(existing)){
-			//TODO: throw resource not found with 404 status code. need to put user defined exception
-			System.out.println("Resource not found with : " + companyId);
+			throw new NotFoundException("Company object not found in system.");
 		}
 		existing = (Company) domainMapper.mapToDomain(companyDto, existing);
 		ResponseDto response = new ResponseDto();

@@ -1,5 +1,7 @@
 package com.service.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -41,5 +43,27 @@ public class Owner {
 	}
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	@Override
+	public boolean equals(Object otherObj) {
+		   if (this == otherObj) {
+	            return true;
+	        }
+
+	        if (otherObj == null) {
+	            return false;
+	        }
+
+	        if (otherObj instanceof Owner) {
+	        	Owner owner = (Owner) otherObj;
+	            return Objects.equals(this.name, owner.getName());
+	        }
+	        return false;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
 	}
 }

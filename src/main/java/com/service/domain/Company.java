@@ -1,6 +1,6 @@
 package com.service.domain;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ public class Company {
 	private String email;
 	private String phoneNumber;
 
-	private List<Owner> owners;
+	private Set<Owner> owners;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -73,10 +73,10 @@ public class Company {
 	}
 
 	@OneToMany(mappedBy="company", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-	public List<Owner> getOwners() {
+	public Set<Owner> getOwners() {
 		return owners;
 	}
-	public void setOwners(List<Owner> owners) {
+	public void setOwners(Set<Owner> owners) {
 		this.owners = owners;
 	}
 

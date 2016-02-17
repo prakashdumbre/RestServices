@@ -1,12 +1,11 @@
 package com.service.domain.mapper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
 import com.client.request.dto.CompanyDto;
-import com.client.request.dto.OwnerDto;
 import com.service.domain.Company;
 import com.service.domain.Owner;
 
@@ -22,8 +21,10 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		destination.setCompanyId(source.getCompanyId());
 		destination.setName(source.getName());
 		destination.setAddress(source.getAddress());
+		destination.setCity(source.getCity());
 		destination.setCountry(source.getCountry());
 		destination.setPhoneNumber(source.getPhoneNumber());
+		destination.setEmail(source.getEmail());
 		destination.setOwners(getOwnerDtos(source.getOwners()));
 		return destination;
 	}
@@ -34,12 +35,14 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		destination.setAddress(source.getAddress());
 		destination.setCountry(source.getCountry());
 		destination.setPhoneNumber(source.getPhoneNumber());
+		destination.setCity(source.getCity());
+		destination.setEmail(source.getEmail());
 		destination.setOwners(getOwners(destination, source.getOwners()));
 		return destination;
 	}
 
-	private List<Owner> getOwners(Company destination, List<String> owners) {
-		List<Owner> ownerList = new ArrayList<Owner>();
+	private Set<Owner> getOwners(Company destination, Set<String> owners) {
+		Set<Owner> ownerList = new HashSet<Owner>();
 		for(String owner : owners) {
 			Owner o = new Owner();
 			o.setCompany(destination);
@@ -49,8 +52,8 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		return ownerList;
 	}
 
-	private List<String> getOwnerDtos(List<Owner> owners) {
-		List<String> ownersList = new ArrayList<String>();
+	private Set<String> getOwnerDtos(Set<Owner> owners) {
+		Set<String> ownersList = new HashSet<String>();
 		for(Owner owner : owners) {
 			ownersList.add(owner.getName());
 		}

@@ -5,6 +5,9 @@
 </head>
 <body>
 
+<script type="text/javascript">
+var contextPath='<%=request.getContextPath()%>';
+</script>
 
 <script>
 function addData() {
@@ -21,18 +24,30 @@ function addData() {
 	jsonObject.owners = owners;
 		$.ajax({
 		  type: "POST",
-		  url: "http://localhost:8080/SpringCxfWebApp/services/companies",
+		  url: contextPath + "/services/companies",
 		  contentType: "application/json",
 		  data: JSON.stringify(jsonObject),
 		  success: function(data){
-			  var message = "Company data created successfully with compnay id " + data.companyId;
+			  var message = "Company created successfully with compnay id " + data.companyId;
 			  $("#companyData").html(message);
+			  resetData();
 		  },
 		 failure: function (response) {
             }
 		});
 }
+function resetData() {
+	$( "#owners" ).val("");
+	$( "#name" ).val("");
+	$( "#address" ).val("");
+	$( "#city" ).val("");
+	$( "#country" ).val("");
+	$( "#email" ).val("");
+	$( "#phone" ).val("");
+	$( "#owners" ).val("");
+}
 </script>
+		<span style="color:blue" id="companyData"></span> <br><br>
 		 <table>
 		 <tr><td> Company name: &nbsp;</td><td> <input type="text" name="name" id="name"></td></tr>
 		  <tr><td>Address: &nbsp; </td><td><input type="text" name="address" id="address"></td></tr>
@@ -44,8 +59,8 @@ function addData() {
 		  <select multiple="true" id="owners">
 			  <option value="Volvo">Volvo</option>
 			  <option value="Saab">Saab</option>
-			  <option value="Saab">Opel</option>
-			  <option value="Saab">Audi</option>
+			  <option value="Opel">Opel</option>
+			  <option value="Audi">Audi</option>
 			</select></td></tr>
 			<tr><td colspan="2" align="center"><br/>
 		 <button onclick="addData()">submit</button></td></tr>
