@@ -1,5 +1,6 @@
 package com.service.domain;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,8 +23,7 @@ public class Company {
 	private String country;
 	private String email;
 	private String phoneNumber;
-
-	private Set<Owner> owners;
+	private Set<Owner> owners = new HashSet<Owner>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

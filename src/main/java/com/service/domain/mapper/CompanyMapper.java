@@ -37,11 +37,11 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 		destination.setPhoneNumber(source.getPhoneNumber());
 		destination.setCity(source.getCity());
 		destination.setEmail(source.getEmail());
-		destination.setOwners(getOwners(destination, source.getOwners()));
+		setOwners(destination, source.getOwners());
 		return destination;
 	}
 
-	private Set<Owner> getOwners(Company destination, Set<String> owners) {
+	private void setOwners(Company destination, Set<String> owners) {
 		Set<Owner> ownerList = new HashSet<Owner>();
 		for(String owner : owners) {
 			Owner o = new Owner();
@@ -49,7 +49,7 @@ public final class CompanyMapper implements DomainMapper<Company, CompanyDto> {
 			o.setName(owner);
 			ownerList.add(o);
 		}
-		return ownerList;
+		destination.setOwners(ownerList);
 	}
 
 	private Set<String> getOwnerDtos(Set<Owner> owners) {

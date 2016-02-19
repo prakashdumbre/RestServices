@@ -65,7 +65,8 @@ public class CompanyResourceServiceImpl implements CompanyResourceService {
 		}
 		existing = (Company) domainMapper.mapToDomain(companyDto, existing);
 		ResponseDto response = new ResponseDto();
-		response.setCompanyId(companyDao.update(existing));
+		companyDao.update(existing);
+		response.setCompanyId(existing.getCompanyId());
 		return response;
  	}
 

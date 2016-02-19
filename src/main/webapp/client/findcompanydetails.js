@@ -23,7 +23,7 @@ $.ajax({
 				"<td> " + data.address + " </td>" +
 				"<td> " + data.country + " </td>" +
 				"<td> " + data.phoneNumber + " </td>" +
-				"<td> " + data[index].owners + " </td>" +
+				"<td> " + data.owners + " </td>" +
 			  "</tr>" +
 			"</table> ";
 			htmlString = tableFormat

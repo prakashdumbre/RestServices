@@ -33,7 +33,7 @@ Indicates successful transition of a new record into database by returning 204 H
                 "country" : "India",
                 "email" : "test@test.com",
                 "phoneNumber" : "878272883",
-                "owners" : [1,2]
+                "owners" : ["Thomos", "Mark"]
             }
 
 + Response 204
@@ -80,7 +80,7 @@ I.e. update can be done by changing any field including updation of company owne
                 "country" : "India",
                 "email" : "test@test.com",
                 "phoneNumber" : "878272883",
-                "owners" : [6,7,8]
+                "owners" : ["Thomos", "Mark"]
             }
 
 + Response 204
@@ -166,7 +166,7 @@ Response indicates successfull return company details.
                 "country" : "India",
                 "email" : "test@test.com",
                 "phoneNumber" : "878272883",
-                "owners" : [6,7,8]
+                "owners" : ["Thomos", "Mark"]
             }
 
 ### Find all company details [GET /companies ]
@@ -216,7 +216,7 @@ Response indicates successfull return all company details.
                     "country" : "India",
                     "email" : "test2@test.com",
                     "phoneNumber" : "87325125",
-                    "owners" : [2]
+                    "owners" : ["Thomos", "Mark"]
                 }
             ]
 
